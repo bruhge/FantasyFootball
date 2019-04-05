@@ -1,0 +1,69 @@
+#: import main FantasyFootball
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+PlayerList:
+
+<PlayerList>:
+	orientation: "vertical"
+	player_name_text_input: player
+	position_text_input: position
+	team_text_input: team
+	player_list: player_list_view
+	padding: 10
+	spacing: 10
+	
+	BoxLayout:
+		size_hint_y: None
+		height: "40dp"
+		
+		Label:
+			text: "Player Name"
+			
+		Label:
+			text: "Position"
+			
+		Label:
+			text: "Team"
+			
+		Button:
+			text: "My Team"
+			
+	BoxLayout:
+		size_hint_y: None
+		height: "40dp"
+		
+		TextInput:
+			id: player
+		
+		Spinner:
+			id: position
+			values: "", "QB", "RB", "TE", "WR", "K", "DST"
+		
+		TextInput:
+			id: team
+			
+		Button:
+			text: "My Player"
+			
+	BoxLayout:
+		size_hint_y: None
+		height: "40dp"
+		
+		Button:
+			text: "Filter"
+			size_hint_x: 15
+			on_release: root.filter_player()
+			
+		Button:
+			text: "Delete"
+			size_hint_x: 15
+			on_release: root.delete_player()
+			
+	ListView:
+		id: player_list_view
+		adapter:
+			ListAdapter(data=[], cls=main.PlayerListButton)
+			
+		
+		
